@@ -1,16 +1,35 @@
+Vlad: FYI - in general requirements frequently sound like: "Program must/should/may do/be able/..."
+
 Requirements for game “HANGMAN”
 1.	Create a dictionary of words
+Vlad, for example: To convert 1. into a requirement - say: "The dictionary with at least 20 words must be stored in a database."
 2.	Program should randomly select a word that the user should guess 
 3.	Program draws a blank line for each letter in the word 
-4.	Ask the user to guess, giving information about the current state (letters in the word and letters known not to be in the word)
+4.	Ask the user to guess a word, giving information about the current state (letters in the word and letters known not to be in the word)
 5.	Handle the guess that the user made:
-a.	fill the letter in the blanks if the user guesses correctly,
-b.	draw part of “hangman” when the user guesses wrong 
+  a.	fill the letter in the blanks if the user guesses correctly,
+  b.	draw part of “hangman” when the user guesses wrong 
+Vlad: the point 6 is not a requirement, but a design. You can either remove it or move to another file.
 6.	The program stores these attributes:
-a.	The word the user must guess,
-b.	The word found to show the progression of the user during the game,
-c.	The number of errors made by the user when trying to guess the word,
-d.	A list of letters already entered by the user
+  a.	The word the user must guess,
+  b.	The word found to show the progression of the user during the game,
+  c.	The number of errors made by the user when trying to guess the word,
+  d.	A list of letters already entered by the user
 7.	Store all of the words and guesses, and display them to the user when prompted to do so
-8.	Save the words and guesses to a file
+8.	Save the words and guesses to a file (Vlad: Database, please. we don't use files :)
 9.	The user wins when the correct word is guessed
+
+Vlad: Program must show 3 options to user after game lost/won:
+1. Play again
+2. Logout - if user selects this option, then another user may login.
+3. Exit program
+4. List all games of a user and number of guesses he took as well as the outcome (win/loss).
+
+
+Vlad:
+At the start of a program user must login by entering a nickname.
+When user logs in for the first time - program must ask to enter name and age.
+This information must be stored in a database.
+Additionally in a database should be stored all games of each user. The information required is: word, number of guesses, win/loss.
+
+
