@@ -1,0 +1,16 @@
+Requirements for game “HANGMAN”
+1.	Create a dictionary of words
+2.	Program should randomly select a word that the user should guess 
+3.	Program draws a blank line for each letter in the word 
+4.	Ask the user to guess, giving information about the current state (letters in the word and letters known not to be in the word)
+5.	Handle the guess that the user made:
+a.	fill the letter in the blanks if the user guesses correctly,
+b.	draw part of “hangman” when the user guesses wrong 
+6.	The program stores these attributes:
+a.	The word the user must guess,
+b.	The word found to show the progression of the user during the game,
+c.	The number of errors made by the user when trying to guess the word,
+d.	A list of letters already entered by the user
+7.	Store all of the words and guesses, and display them to the user when prompted to do so
+8.	Save the words and guesses to a file
+9.	The user wins when the correct word is guessed
