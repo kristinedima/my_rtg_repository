@@ -5,11 +5,11 @@ Requirements for game “HANGMAN”
 4.	Ask the user to guess, giving information about the current state (letters in the word and letters known not to be in the word)
 5.	Handle the guess that the user made:
 a.	fill the letter in the blanks if the user guesses correctly,
-b.	draw part of “hangman” when the user guesses wrong 
+b.	draw part of “hangman” when the user guesses wrong
 6.	Store all of the words and guesses, and display them to the user when prompted to do so
 7.	Save the words and guesses to a database
 8.	The user wins when the correct word is guessed
-9.	Vlad: Program must show 3 options to user after game lost/won:
+9.	Program must show 3 options to user after game lost/won:
 a.	Play again
 b.	Logout - if user selects this option, then another user may login
 c.	Exit program
