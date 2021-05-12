@@ -14,12 +14,13 @@ game_number BIGINT auto_increment PRIMARY KEY,
 username VARCHAR(50) NOT NULL,
 guesses INT NOT NULL,
 outcome VARCHAR(50) NOT NULL,
-CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES Dictionary(id),
+CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES Dictionary(id),    -- Vlad: you are missing column id in this table!
 CONSTRAINT username_fk FOREIGN KEY (username) REFERENCES Users(username)
 );
 
 -- Additionally you have Users table - and I would suggest putting Foreigh Key constraint on a Game tabl (e.g. there could not be a game without a valid user, right?
 -- KristineD: I put contraint on username from Users table, does it mean that username in Game table itself is not needed? Will there be 2 usernames in the end if I have it separately + also FK
+-- Vlad: No. The constraint itself does not create a column (field). It only adds a constraint to existing column.
 
 INSERT INTO Dictionary
 (word) VALUES
@@ -49,6 +50,9 @@ SELECT COUNT(*) FROM Game -- you will need to add WHERE clause, otherwise you wo
 -- KristineD: initially that was the idea, but I guess that would give too much useless info with all the fields from Game table.
 --(cont.): But does it make sense to print this outcome at all? Maybe it is enough with the last one (list user with most wins), which will implement that?
 --(cont.2): if I leave this query is it not better then to use GROUP By username, or you meant WHERE username = ?
+-- Vlad: nono. You still can use count(*) and it will return only 1 field -> count. But if you don't use WHERE - then you will count all the games in a table, but you need a games of a specific user, right?
+-- GROUP BY would be needed if you want to see how much games each player played. But if you need only one - there is no need in grouping.
+
 
 -- print count of users
 SELECT COUNT(*) FROM Users;
@@ -56,6 +60,7 @@ SELECT COUNT(*) FROM Users;
 --list user with most wins
 -- Here it is a bit more complex. You first need to count games per user - you will need GROUP BY for that.
 --KristineD: is it not already printed in (print count of games played by user)? Do I understand correctly that even if it is, I need to implement it also in this query?
+-- Vlad: Games played != Games won. The first query was about the later. Here you need another thing.
 
 -- And then you need to find the one that has most wins.
 --KristineD: therefore I had this (is deleted now):
@@ -64,6 +69,10 @@ SELECT COUNT(*) FROM Users;
 --("Loss");
 --it was in order to assign no. 1 and no. 2, so I can select later WHERE outcome = 1 (= Win).... Is my thinking not correct?
 --KristineD: In my understanding the "ultimate" winner should be chosen combining 2 parameters (most wins, least guesses)
+-- Vlad: You can do outcome = 'Win'; or outcome = 'Loss'. There is no need in separate table so that you could do comparison.
+-- The ultimate winned - i agree. Though that does not really make things simpler :D On the other hand - it's just one more column in ORDER BY
+
+
 
 -- You have 2 options: 
 --  1. Create a query in query e.g. SELECT username FROM (SELECT .. FROM Game GROUP BY ...) WHERE
