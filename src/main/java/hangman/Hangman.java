@@ -9,12 +9,13 @@ public class Main {
             System.out.println("Please choose an option: ");
             System.out.println("\t1. Login");
             System.out.println("\t2. Play again");
-            System.out.println("\t3. Exit program");
+            System.out.println("\t3. Logout");           
+            System.out.println("\t4. Exit program");
 
             System.out.print("Your choice: ");
             int option = scanner.nextInt();
-            if (option < 1 || option > 3) {
-                System.out.println("You have entered wrong option, please enter number between 1 - 3");
+            if (option < 1 || option > 4) {
+                System.out.println("You have entered wrong option, please enter number between 1 - 4");
             } else if (option == 1) {
                 System.out.println("Enter your name: ");
                 String name = scanner.next();
