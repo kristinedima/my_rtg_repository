@@ -57,3 +57,11 @@ GROUP By username
 -- print count of guesses
 SELECT username, SUM(guesses) FROM Game
 GROUP By username
+
+-- insert into users
+INSERT INTO Users(name, username, age) VALUES
+(?, ?, ?);
+
+-- delete from users
+DELETE FROM users WHERE username = ?;
+
