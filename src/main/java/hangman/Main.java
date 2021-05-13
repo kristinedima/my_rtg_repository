@@ -12,8 +12,7 @@ import static hangman.SQL.*;
 
 public class Main {
     private static final String JDBC_DRIVER = "org.h2.Driver";
-    private static final String DB_URL = "jdbc:h2:./testdb"; //should I not create other database? for example, hangman ??
-
+    private static final String DB_URL = "jdbc:h2:./hangman";
     private static final String USER = "sa";
     private static final String PASS = "";
 
@@ -26,22 +25,22 @@ public class Main {
     public static void main(String[] args) {
         try (Connection connection = getConnection()) {
             prepareDatabase(connection);
-            workWithConnection(connection); //all logic of db goes here
+            workWithConnection(connection);
         } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());
             throwables.printStackTrace();
         }
     }
 
-    // what if I have 3 tables to create ??? int update is already defined
+
     private static void prepareDatabase(Connection connection) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            int update = statement.executeUpdate(CREATE_TABLE_DICTIONARY);
-            System.out.println("Table successfully created " + update);
-//            int update = statement.executeUpdate(CREATE_TABLE_USERS);
-//            System.out.println("Table successfully created " + update);
-//            int update = statement.executeUpdate(CREATE_TABLE_GAME);
-//            System.out.println("Table successfully created " + update);
+            int updateDictionary = statement.executeUpdate(CREATE_TABLE_DICTIONARY);
+            System.out.println("Table successfully created " + updateDictionary);
+            int updateUsers = statement.executeUpdate(CREATE_TABLE_USERS);
+            System.out.println("Table successfully created " + updateUsers);
+            int updateGame = statement.executeUpdate(CREATE_TABLE_GAME);
+            System.out.println("Table successfully created " + updateGame);
         }
     }
 
@@ -67,8 +66,8 @@ public class Main {
                 case LOGOUT:
                     logout();
                     break;
-                case PLAY_AGAIN:
-                    playAgain();
+                case PLAY_GAME:
+                    playGame();
                     break;
                 case EXIT:
                     return;
@@ -76,8 +75,8 @@ public class Main {
         }
     }
 
-    //working on these. not sure if logout is needed, maybe instead should be playGame, describe
-    private static void playAgain() {
+    //working on these.
+    private static void playGame() {
     }
 
     private static void logout() {
@@ -106,7 +105,7 @@ public class Main {
         try (Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(PRINT_COUNT_OF_GAMES_PLAYED_BY_USER)) {
                 resultSet.next(); // switching to the first row
-                System.out.println(resultSet.getInt(1)); // getting value from first row, first column. What if there are more parameters??
+                System.out.println(resultSet.getInt(1));
             }
         }
     }
@@ -122,13 +121,12 @@ public class Main {
         }
     }
 
-    // getting value from first row, first column. What if there are more parameters?? line 122 and 123, 132 and 133
     private static void printCountOfWins(Connection connection) throws SQLException {
         System.out.println("Printing count of wins per user");
         try (Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(PRINT_COUNT_OF_WINS)) {
                 resultSet.next();
-                System.out.println(resultSet.getInt(1));
+                System.out.println(resultSet.getInt(2));
             }
         }
     }
@@ -138,7 +136,7 @@ public class Main {
         try (Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(PRINT_COUNT_OF_GUESSES)) {
                 resultSet.next();
-                System.out.println(resultSet.getInt(1));
+                System.out.println(resultSet.getInt(2));
             }
         }
     }

@@ -36,6 +36,3 @@ public class SQL {
             "honey, javascript, medicine, millennium, painkiller, rainfall, trouble, testosterone," +
             "truthful, water, whale);";
 }
-
-// is INSERT_INTO_DICTIONARY needed??
-// here in this SQL.java are defined constants

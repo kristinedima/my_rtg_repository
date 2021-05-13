@@ -7,8 +7,8 @@ public enum Action {
     PRINT_COUNT_OF_GUESSES,
     LOGIN,
     LOGOUT,
-    PLAY_AGAIN,
+    PLAY_GAME,
     EXIT
 }
 
-// not sure if logout is needed, sufficient with exit. Missing: playGame, describe?
+// PlayGame = PlayAgain??
